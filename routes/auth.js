@@ -1,7 +1,8 @@
-import express from "express";
+const express = require("express");
 const router = express.Router();
-import { createOrUpdateUser } from "../controller/auth.js";
+const createOrUpdateUser = require("../controller/auth.js");
+const authCheck = require("../middleware/auth.js");
 
 router.get("/create-or-update-user", createOrUpdateUser);
 
-export default router;
+module.exports = router;

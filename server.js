@@ -1,13 +1,13 @@
-import express from "express";
-import dotenv from "dotenv";
-import connectDB from "./config/db.js";
-import colors from "colors";
-import morgan from "morgan";
-import bodyParser from "body-parser";
-import cors from "cors";
-import authRoutes from "./routes/auth.js";
-import userRoutes from "./routes/user.js";
-// import fs from "fs";
+const express = require("express");
+const dotenv = require("dotenv");
+const connectDB = require("./config/db");
+const colors = require("colors");
+const morgan = require("morgan");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/user");
+// const fs from "fs";
 
 dotenv.config();
 

@@ -4,4 +4,4 @@ const createOrUpdateUser = (req, res) => {
   });
 };
 
-export { createOrUpdateUser };
+module.exports = createOrUpdateUser;
