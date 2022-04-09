@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      default: "Subscriber",
+      default: "subscriber",
     },
     cart: {
       type: Array,
@@ -30,4 +30,4 @@ const userSchema = new mongoose.Schema(
 
 const User = mongoose.model("User", userSchema);
 
-export default User;
+module.exports = User;
