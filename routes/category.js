@@ -1,8 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const { authCheck, adminCheck } = require("../middleware/auth");
-//controller
-
 const {
   create,
   read,
