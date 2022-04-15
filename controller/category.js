@@ -16,7 +16,7 @@ exports.create = async (req, res) => {
 
 exports.list = async (req, res) => {
   try {
-    const category = await Category.find({}.sort({ createdAt: -1 })).exec();
+    const category = await Category.find({}).sort({ createdAt: -1 }).exec();
     res.json(category);
   } catch (err) {
     res.status(400).send("category list not found");
@@ -35,14 +35,14 @@ exports.read = async (req, res) => {
 exports.update = async (req, res) => {
   const { category } = req.body;
   try {
-    const category = await Category.findOneAndUpdate(
+    const categoryName = await Category.findOneAndUpdate(
       {
         slug: req.params.slug,
       },
-      { name: category, slug: slugify(name) },
+      { name: category, slug: slugify(category) },
       { new: true }
     ).exec();
-    res.json(category);
+    res.json(categoryName);
   } catch (err) {
     res.status(400).send("Category could not be  Updated");
   }
@@ -55,6 +55,6 @@ exports.remove = async (req, res) => {
     }).exec();
     res.json(category);
   } catch (err) {
-    res.status(400).send("Create category failed");
+    res.status(400).send("Deletion category failed");
   }
 };
