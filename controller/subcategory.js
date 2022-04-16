@@ -3,10 +3,12 @@ const slugify = require("slugify");
 
 exports.create = async (req, res) => {
   try {
+    console.log(req.body);
     const { subcategory } = req.body;
     const subcategoryName = await new SubCategory({
-      name: subcategory,
-      slug: slugify(subcategory),
+      name: subcategory.name,
+      parent: subcategory.parent,
+      slug: slugify(subcategory.name),
     }).save();
     res.json(subcategoryName);
   } catch (err) {
@@ -43,12 +45,16 @@ exports.update = async (req, res) => {
       {
         slug: req.params.slug,
       },
-      { name: subcategory, slug: slugify(subcategory) },
+      {
+        name: subcategory.name,
+        parent: subcategory.parent,
+        slug: slugify(subcategory.name),
+      },
       { new: true }
     ).exec();
     res.json(subcategoryName);
   } catch (err) {
-    res.status(400).send("Category could not be  Updated");
+    res.status(400).send("SubCategory could not be  Updated");
   }
 };
 
