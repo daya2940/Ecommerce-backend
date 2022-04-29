@@ -9,6 +9,7 @@ const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const categoryRoutes = require("./routes/category");
 const subCategoryRoutes = require("./routes/subcategory");
+const productRoute = require("./routes/product");
 
 // const fs from "fs";
 
@@ -35,6 +36,7 @@ app.use("/api", authRoutes);
 app.use("/api", userRoutes);
 app.use("/api", categoryRoutes);
 app.use("/api", subCategoryRoutes);
+app.use("/api", productRoute);
 
 // Routes middleware
 // fs.readdirSync("./routes").map((item) =>
