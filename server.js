@@ -10,6 +10,7 @@ const userRoutes = require("./routes/user");
 const categoryRoutes = require("./routes/category");
 const subCategoryRoutes = require("./routes/subcategory");
 const productRoute = require("./routes/product");
+const uploadRoutes = require("./routes/cloudinary");
 
 // const fs from "fs";
 
@@ -20,11 +21,10 @@ connectDB();
 const app = express();
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ limit: "200mb", extended: true }));
 
 // parse application/json
 app.use(bodyParser.json());
-
 // setup the logger
 app.use(morgan("dev"));
 app.use(cors());
@@ -37,6 +37,7 @@ app.use("/api", userRoutes);
 app.use("/api", categoryRoutes);
 app.use("/api", subCategoryRoutes);
 app.use("/api", productRoute);
+app.use("/api", uploadRoutes);
 
 // Routes middleware
 // fs.readdirSync("./routes").map((item) =>
