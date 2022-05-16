@@ -7,19 +7,21 @@ exports.create = async (req, res) => {
     const newProduct = await new Product(req.body.product).save();
     res.json(newProduct);
   } catch (err) {
-    // res.status(400).send("Creation of product failed");
     res.status(400).json({
       err: err.message,
     });
   }
 };
 
-exports.list = async (req, res) => {
+exports.listAll = async (req, res) => {
   try {
     const product = await Product.find({})
-      .populate("")
+      .limit(parseInt(req.params.count))
+      .populate("category")
+      .populate("subcategory")
       .sort({ createdAt: -1 })
       .exec();
+    console.log(product);
     res.json(product);
   } catch (err) {
     res.status(400).send("product list not found");
@@ -28,7 +30,10 @@ exports.list = async (req, res) => {
 
 exports.read = async (req, res) => {
   try {
-    const product = await Product.findOne({ slug: req.params.slug }).exec();
+    const product = await Product.findOne({ slug: req.params.slug })
+      .populate("category")
+      .populate("subcategory")
+      .exec();
     res.json(product);
   } catch (err) {
     res.status(400).send(`Product${req.params.slug} not found`);
